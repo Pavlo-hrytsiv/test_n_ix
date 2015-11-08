@@ -1,0 +1,19 @@
+<h1><%= t(:reports)%>: <%= t(:report_per_day)%></h1>
+<%= form_tag('/per_day') do |f| %>
+  <input data-provide="datepicker" name="date" data-date-format="dd/mm/yyyy">
+  <%= submit_tag t(:report) %>
+<% end %>
+<p><%= t(:per_day_info) %></p>
+<% if @result.present? %>
+  <%= t(:date) %>
+  <%= @result[:date] %><br>
+  <%= t(:urls_count) %>
+  <%= @result[:count] %><br>
+  <%= t(:price) %>
+  <%= number_to_currency(@result[:price], unit: "$", format: "%u %n") %><br>
+<% else %>
+  <% if @date %>
+    <%= t(:no_urls_per_day, date: @date) %>
+  <% end %>
+<% end %>
+<br><br><br><br><br><br><br><br><br><br>

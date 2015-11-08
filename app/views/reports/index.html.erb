@@ -1,0 +1,23 @@
+<h1><%= t(:reports)%>: <%= t(:report_all_days)%></h1>
+<% if @result.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t(:date) %></th>
+        <th><%= t(:urls_count) %></th>
+        <th><%= t(:price) %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @result.each do |row| %>
+      <tr>
+        <td><%= row[:date] %></td>
+        <td><%= row[:count] %></td>
+        <td><%= number_to_currency(row[:price], unit: "$", format: "%u %n") %></td>
+      </tr>
+    <% end %>    
+    </tbody>
+  </table>
+<% else %>
+  <%= t(:no_added_urls) %>
+<% end %>

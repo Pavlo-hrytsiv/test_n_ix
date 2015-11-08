@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t(:full_url)%></th>
+      <th><%= t(:short_url)%></th>
+      <th><%= t(:active)%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urls.each do |url| %>
+      <% if url.active %>
+      <tr>
+      <% else %>
+      <tr style="text-decoration:line-through">
+      <% end %>
+        <td><%= url.full_url %></td>
+        <% if url.active %>
+          <td><%= link_to url.short_url, url.short_url %></td>
+        <% else %>
+          <td><%= url.short_url %></td>
+        <% end %>
+        <td><%= url.active %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

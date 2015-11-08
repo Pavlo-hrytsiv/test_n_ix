@@ -1,0 +1,6 @@
+<h1><%= t(:my_listing_urls)%></h1>
+<% if @urls.present? %>
+  <%= render 'list' %>
+<% else %>
+  <%= t(:no_added_urls) %>
+<% end %>
