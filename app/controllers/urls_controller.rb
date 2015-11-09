@@ -27,7 +27,6 @@ class UrlsController < ApplicationController
     @url = Url.create_url(url_params[:full_url], session[:authentication_token])
     respond_to do |format|
       if @url.valid?
-        update_daily_summary
         format.html { redirect_to my_path, notice: t(:url_create) }
         format.json { render :index, status: :created, location: urls_path }
       else
@@ -41,9 +40,5 @@ class UrlsController < ApplicationController
   private
   def url_params
     params.require(:url).permit(:full_url)
-  end
-  def update_daily_summary
-    session[:count] = Url.user_urls(session[:authentication_token]).date(Date.current).all.count
-    session[:price] = PriceCalculator.new.calculate_price(session[:count])
   end
 end

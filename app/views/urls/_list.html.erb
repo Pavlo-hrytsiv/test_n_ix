@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= t(:Added_at)%></th>
       <th><%= t(:full_url)%></th>
       <th><%= t(:short_url)%></th>
       <th><%= t(:active)%></th>
@@ -14,6 +15,9 @@
       <% else %>
       <tr style="text-decoration:line-through">
       <% end %>
+        <td>
+          <%= url.created_at.to_date %>
+        </td>
         <td><%= url.full_url %></td>
         <% if url.active %>
           <td><%= link_to url.short_url, url.short_url %></td>
